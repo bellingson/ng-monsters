@@ -1,19 +1,19 @@
     <div class="row cart-sell">  
       <div class="col-sm-4 col-sm-offset-8">
         <a ng-href="/#/sell" class="btn btn-sell">Sell</a>
-        <a ng-href="/#/cart" class="btn btn-checkout">Checkout ({{cartCount}})</a>
+        <a ng-href="/#/cart" class="btn btn-checkout">Checkout ({{monsters.cartCount}})</a>
       </div>
     </div>
 
-<ng-include src="'monster/monster-messages.html'" ></ng-include>
+<mo-messages></mo-messages>
 
 <div class="row">
 
       <!-- // MONSTER 1 -->
-      <div class="col-sm-4" ng-repeat="monster in monsters">
+      <div class="col-sm-4" ng-repeat="monster in monsters.monsters">
 
         <div class="box monster">
-            <a ng-show="canEdit(monster)" ng-href="/#/sell/{{monster.id}}" class="edit octicon octicon-pencil"></a>
+            <a ng-show="monsters.canEdit(monster)" ng-href="/#/sell/{{monster.id}}" class="edit octicon octicon-pencil"></a>
 
             <h3>{{monster.name}}</h3>
 
@@ -31,7 +31,7 @@
             </div>
             <div class="col-sm-7">
               <a ng-href="/#/monster/{{monster.id}}" class="btn btn-details">Details</a>
-              <button class="btn btn-cart" ng-click="addToCart(monster)">Add to Cart</button>
+              <button class="btn btn-cart" ng-click="monsters.addToCart(monster)">Add to Cart</button>
             </div>
           </div>
         

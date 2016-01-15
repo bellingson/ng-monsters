@@ -7,7 +7,7 @@ angular.module('monsterApp',['ngRoute','restangular'])
 
 		$routeProvider.when('/',{
 			templateUrl: 'monster/monsters.html',
-			controller: 'MonsterListCtrl'
+			controller: 'MonsterListCtrl as monsters'
 		})
 		.when('/monster/:id', {
 			templateUrl: 'monster/monster-detail.html',

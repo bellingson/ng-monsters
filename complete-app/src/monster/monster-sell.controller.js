@@ -1,13 +1,15 @@
-'use strict';
+;(function() {
+	'use strict';
 
-angular.module('monsterApp').controller('MonsterSellCtrl',function($scope, $routeParams, $location, monsterService) {
+angular.module('monsterApp').controller('MonsterSellCtrl', MonsterSellCtrl);
 
+function MonsterSellCtrl($scope, $routeParams, $location, monsterService, messageService) {
 
 	$scope.sellMonster = sellMonster;
 	$scope.cancelClicked = cancelClicked;
 	$scope.cancelSale = cancelSale;
 
-	var activate = function() {
+	function activate() {
 		
 		if($routeParams.id) {
 
@@ -65,4 +67,8 @@ angular.module('monsterApp').controller('MonsterSellCtrl',function($scope, $rout
 
 	activate();
 
-});
+}
+
+
+
+})();
