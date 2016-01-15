@@ -1,0 +1,10 @@
+STEPS
+0 - prototype
+1 - MonsterListCtrl 
+	- add angular scripts	
+	- add ng-app
+	- add ng-view
+	- create app.js
+	- create monsters.controller.js
+	
+	

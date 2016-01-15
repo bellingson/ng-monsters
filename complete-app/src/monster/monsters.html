@@ -1,0 +1,43 @@
+    <div class="row cart-sell">  
+      <div class="col-sm-4 col-sm-offset-8">
+        <a ng-href="/#/sell" class="btn btn-sell">Sell</a>
+        <a ng-href="/#/cart" class="btn btn-checkout">Checkout ({{cartCount}})</a>
+      </div>
+    </div>
+
+<ng-include src="'monster/monster-messages.html'" ></ng-include>
+
+<div class="row">
+
+      <!-- // MONSTER 1 -->
+      <div class="col-sm-4" ng-repeat="monster in monsters">
+
+        <div class="box monster">
+            <a ng-show="canEdit(monster)" ng-href="/#/sell/{{monster.id}}" class="edit octicon octicon-pencil"></a>
+
+            <h3>{{monster.name}}</h3>
+
+            <div class="img-wrapper">
+              <a ng-href="/#/monster/{{monster.id}}"><img ng-src="{{monster.img}}" alt="{{monster.name}}"/></a>  
+            </div>            
+
+            <p class="summary">
+              {{monster.description | monsterSummary }}
+            </p>
+
+          <div class="row">
+            <div class="col-sm-5 price">
+                {{monster.price | currency }}
+            </div>
+            <div class="col-sm-7">
+              <a ng-href="/#/monster/{{monster.id}}" class="btn btn-details">Details</a>
+              <button class="btn btn-cart" ng-click="addToCart(monster)">Add to Cart</button>
+            </div>
+          </div>
+        
+            </div> <!-- // monster -->
+      </div> <!-- monster-col -->
+
+
+        
+    </div> <!-- // MonsterListCtrl -->
