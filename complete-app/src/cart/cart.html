@@ -5,7 +5,7 @@
     
   </div>  
 
-<ng-include src="'monster/monster-messages.html'" ></ng-include>
+<mo-messages></mo-messages>
 
 <div class="row">
 
@@ -22,21 +22,21 @@
               <th class="col-sm-1"></th>
             </tr>
 
-            <tr ng-repeat="monster in monsters">
+            <tr ng-repeat="monster in cart.monsters">
               <td>{{monster.name}}</td>
               
               <td>{{monster.price | currency }}</td>
               <td>
-              	<button ng-click="removeMonster(monster)" class="btn btn-default"><span class="octicon octicon-x"></span></button>
+              	<button ng-click="cart.removeMonster(monster)" class="btn btn-default"><span class="octicon octicon-x"></span></button>
               </td>     
             </tr>
 	
-            <tr ng-show="monsters.length > 0">
+            <tr ng-show="cart.monsters.length > 0">
               <td><b>Total</b></td>
-              <td>{{totalPrice | currency }}</td>
+              <td>{{cart.totalPrice | currency }}</td>
               <td></td>              
             </tr>  
-            <tr ng-show="monsters.length == 0">
+            <tr ng-show="cart.monsters.length == 0">
               <td colspan="3"><em>Your cart is empty</em></td>
             </tr>                   
             
@@ -45,7 +45,7 @@
 
           <div class="row">
             <div class="col-sm-2 col-sm-offset-10">
-              <button ng-disabled="monsters.length == 0" ng-click="checkOutClicked()" class="btn btn-danger">Checkout</button>
+              <button ng-disabled="cart.monsters.length == 0" ng-click="cart.checkOutClicked()" class="btn btn-danger">Checkout</button>
             </div>  
 
           </div>

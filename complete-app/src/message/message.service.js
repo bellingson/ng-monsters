@@ -3,10 +3,9 @@
 
 angular.module('monsterApp').factory('messageService', MessageService);
 
-function MessageService() {
+function MessageService($location) {
 
-	var _message;
-	var _errorMessage;
+	var msgStore = {};
 
 	var subscribers = [];
 
@@ -14,32 +13,45 @@ function MessageService() {
 		subscribers.push(fn);
 	}
 
-	function message(msg) {
-		if (msg) {
-			_errorMessage = null;
-			_message = msg;
-			subscribers.forEach(function(s) { s(); } );
+	function unsubscribe() {
+		subscribers = [];
+	}
+
+	function message(msg, path) {
+		return addOrGetMessage('message', msg, path);
+	}
+
+	function errorMessage(msg, path) {
+		return addOrGetMessage('errorMessage', msg, path);
+	}	
+
+	function addOrGetMessage(key, msg, path) {
+
+
+		if (msg) {   // set a message in the store
+			msgStore = {};
+			msgStore[key] = { text: msg, path: (path || $location.path()) }			
+			subscribers.forEach(function(s) { s(); } );		
 			return;
 		}
 
-		return _message;
-	}
-
-	function errorMessage(msg) {
-		if (msg) {
-			_errorMessage = msg;
-			_message = null;
-			subscribers.forEach(function(s) { s(); } );
-			return;
+		// retrieve a message and clear the store if the message path matches current path
+		var msgForKey = msgStore[key];
+		if(msgForKey) {             
+			if($location.path() === msgForKey.path) {
+				msgStore[key] = null;
+			}
+			return msgForKey.text;
 		}
-		return _errorMessage;
-	}
 
+		return null;
+	}
 
 	return {
 		message: message,
 		errorMessage: errorMessage,
-		subscribe: subscribe
+		subscribe: subscribe,
+		unsubscribe: unsubscribe
 	};
 }
 

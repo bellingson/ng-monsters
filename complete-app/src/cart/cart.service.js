@@ -4,6 +4,8 @@ angular.module('monsterApp').factory('cartService',function(userService, $q) {
 	
 	var cart = [ ];
 
+	var subscribers = [];
+
 	function add(monster) {
 
 		function _add(monster) {
@@ -19,6 +21,8 @@ angular.module('monsterApp').factory('cartService',function(userService, $q) {
 			}	
 
 			cart.push(monster);	
+
+			subscribers.forEach(function(s) { s(); });
 		}
 
 		return $q(function(resolve, reject) {
@@ -38,6 +42,7 @@ angular.module('monsterApp').factory('cartService',function(userService, $q) {
 	function remove(monster) {
 
 		_.remove(cart,function(m) { return m.id == monster.id; });
+		subscribers.forEach(function(s) { s(); });
 
 	}
 
@@ -53,14 +58,18 @@ angular.module('monsterApp').factory('cartService',function(userService, $q) {
 		return _.sum(_.map(cart,function(m) { return m.price; }));		
 	}
 
+	function subscribe(fn) {
+		subscribers = [ fn ];
+	}
+
 	return {
 
 		add: add,
 		remove: remove,
 		itemCount: itemCount,
 		items: items, 
-		totalPrice: totalPrice
-
+		totalPrice: totalPrice, 
+		subscribe: subscribe
 	};
 
 });

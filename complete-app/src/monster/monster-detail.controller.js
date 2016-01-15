@@ -1,10 +1,15 @@
-'use strict';
+;(function() {
+	'use strict';
 
-angular.module('monsterApp').controller('MonsterDetailCtrl',function($scope, $routeParams, $location, monsterService, cartService) {
+angular.module('monsterApp').controller('MonsterDetailCtrl', MonsterDetailCtrl);
 
-	$scope.addToCart = addToCart;	
+function MonsterDetailCtrl($routeParams, $location, monsterService, cartService, messageService) {
 
-	var activate = function() {
+	var vm = this;
+
+	vm.addToCart = addToCart;	
+
+	function activate() {
 		fetchMonster();
 		updateCartCount();
 	};
@@ -13,7 +18,7 @@ angular.module('monsterApp').controller('MonsterDetailCtrl',function($scope, $ro
 
 		var id = $routeParams.id;
 		monsterService.get(id).then(function(r) {			
-			$scope.monster = r;
+			vm.monster = r;
 		});
 
 	}
@@ -21,9 +26,10 @@ angular.module('monsterApp').controller('MonsterDetailCtrl',function($scope, $ro
 	function addToCart(monster) {
 
 		cartService.add(monster).then(function() {
+			messageService.message('Added ' + monster.name + ' to your cart.','/');
 			$location.path('/');
 		},function(e) {
-			$scope.errorMessage = e.message;
+			messageService.errorMessage(e.message);
 		});
 	}
 
@@ -33,8 +39,13 @@ angular.module('monsterApp').controller('MonsterDetailCtrl',function($scope, $ro
 	}
 
 	function updateCartCount() {
-		$scope.cartCount = cartService.itemCount();
+		vm.cartCount = cartService.itemCount();
 	}
 
 	activate();
-});
+}	
+
+
+})();
+
+

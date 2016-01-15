@@ -1,24 +1,28 @@
-'use strict';
+;(function() {
+	'use strict';
 
-angular.module('monsterApp').controller('CartViewCtrl',['$scope','cartService', function($scope, cartService) {
+angular.module('monsterApp').controller('CartViewCtrl', CartViewCtrl);
 
+function CartViewCtrl(cartService, messageService) {
+
+	var vm = this;
 	
-	$scope.checkOutClicked = checkOutClicked;
-	$scope.removeMonster = removeMonster;
+	vm.checkOutClicked = checkOutClicked;
+	vm.removeMonster = removeMonster;
 
-	var activate = function() {
+	function activate() {
 		fetchMonstersInCart();
 	};
 
 	function fetchMonstersInCart() {
-		$scope.monsters = cartService.items();
-		$scope.totalPrice = cartService.totalPrice();		
+		vm.monsters = cartService.items();
+		vm.totalPrice = cartService.totalPrice();		
 	}
 
 	function validate() {
 
-		if($scope.monsters.length == 0) {
-			$scope.errorMessage = "Your cart is empty";
+		if(vm.monsters.length == 0) {
+			messageService.errorMessage("Your cart is empty");
 			return false;
 		}
 
@@ -30,7 +34,7 @@ angular.module('monsterApp').controller('CartViewCtrl',['$scope','cartService', 
 		if(!validate())
 			return;
 
-		$scope.message = "Congratulations on your purchase";
+		messageService.message("Congratulations on your purchase");
 	}
 
 	function removeMonster(monster) {
@@ -39,4 +43,10 @@ angular.module('monsterApp').controller('CartViewCtrl',['$scope','cartService', 
 	}
 
 	activate();
-}]);
+}
+
+
+})();
+
+
+

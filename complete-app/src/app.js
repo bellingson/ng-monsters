@@ -7,23 +7,23 @@ angular.module('monsterApp',['ngRoute','restangular'])
 
 		$routeProvider.when('/',{
 			templateUrl: 'monster/monsters.html',
-			controller: 'MonsterListCtrl as monsters'
+			controller: 'MonsterListCtrl as list'
 		})
 		.when('/monster/:id', {
 			templateUrl: 'monster/monster-detail.html',
-			controller: 'MonsterDetailCtrl'
+			controller: 'MonsterDetailCtrl as detail'
 		})
 		.when('/sell',{
 			templateUrl: 'monster/monster-sell.html',
-			controller: 'MonsterSellCtrl'
+			controller: 'MonsterSellCtrl as sell'
 		})
 		.when('/sell/:id', {
 			templateUrl: 'monster/monster-sell.html',
-			controller: 'MonsterSellCtrl'
+			controller: 'MonsterSellCtrl as sell'
 		})
 		.when('/cart', {
 			templateUrl: 'cart/cart.html',
-			controller: 'CartViewCtrl'
+			controller: 'CartViewCtrl as cart'
 		});;
 
 

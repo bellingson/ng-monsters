@@ -4,7 +4,7 @@
     </div>
     <div class="col-sm-4 col-sm-offset-4">
       <a ng-href="/#/sell" class="btn btn-danger">Sell</a>
-      <a ng-href="/#/cart" class="btn btn-warning">Checkout ({{cartCount}})</a>
+      <cart-button></cart-button>
     </div>
   </div>  
 
@@ -20,28 +20,28 @@
         <div class="col-sm-5">
 
           <div class="img-wrapper">
-           <img src="{{monster.img}}" alt="{{monster.name}}"/>   
+           <img src="{{detail.monster.img}}" alt="{{detail.monster.name}}"/>   
           </div>
            
         </div>
         <div class="col-sm-7">
-          <h3>{{monster.name}}</h3>
+          <h3>{{detail.monster.name}}</h3>
 
-          <div><b>Birthday: </b>  {{monster.birthday}}</div>
+          <div><b>Birthday: </b>  {{detail.monster.birthday}}</div>
           <div><b>Age: </b>  62</div>
-          <div><b>Price: </b>  {{monster.price | currency }}</div>
+          <div><b>Price: </b>  {{detail.monster.price | currency }}</div>
 
           
         </div>
       </div>
       
       <p class="detail">
-        {{monster.description}}
+        {{detail.monster.description}}
       </p>
 
     <div class="row">
       <div class="col-sm-1 col-sm-offset-10">
-        <button class="btn btn-danger" ng-click="addToCart(monster)">Add to Cart</button>
+        <button class="btn btn-danger" ng-click="detail.addToCart(detail.monster)">Add to Cart</button>
       </div>
     </div>
       
