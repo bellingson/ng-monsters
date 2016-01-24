@@ -5,7 +5,9 @@
       </div>
     </div>
 
+
 <mo-messages></mo-messages>
+
 
 <div class="row">
 
@@ -13,7 +15,7 @@
       <div class="col-sm-4" ng-repeat="monster in list.monsters">
 
         <div class="box monster">
-            <a ng-show="monsters.canEdit(monster)" ng-href="/#/sell/{{monster.id}}" class="edit octicon octicon-pencil"></a>
+            <a ng-show="list.canEdit(monster)" ng-href="/#/sell/{{monster.id}}" class="edit octicon octicon-pencil"></a>
 
             <h3>{{monster.name}}</h3>
 

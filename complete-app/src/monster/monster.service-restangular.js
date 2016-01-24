@@ -1,7 +1,13 @@
-'use strict';
+;(function() {
+	'use strict';
 
 
-angular.module('monsterApp').factory('monsterService',function (Restangular) {
+angular.module('monsterApp').factory('monsterService', MonsterService);
+
+MonsterService.$inject = [ 'Restangular' ];
+
+
+function MonsterService(Restangular) {
 
 	var Monsters = Restangular.all('monster');
 
@@ -36,4 +42,9 @@ angular.module('monsterApp').factory('monsterService',function (Restangular) {
 		monsters: monsters
 	}
 
-});
+}
+
+
+})();
+
+

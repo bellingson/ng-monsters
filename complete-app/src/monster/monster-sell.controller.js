@@ -3,6 +3,8 @@
 
 angular.module('monsterApp').controller('MonsterSellCtrl', MonsterSellCtrl);
 
+MonsterSellCtrl.$inject = [ '$routeParams', '$location', 'monsterService', 'messageService' ];
+
 function MonsterSellCtrl($routeParams, $location, monsterService, messageService) {
 
 	var vm = this;

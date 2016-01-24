@@ -3,6 +3,8 @@
 
 angular.module('monsterApp').controller('CartViewCtrl', CartViewCtrl);
 
+CartViewCtrl.$inject = [ 'cartService', 'messageService' ];
+
 function CartViewCtrl(cartService, messageService) {
 
 	var vm = this;

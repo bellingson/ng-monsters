@@ -1,9 +1,25 @@
-'use strict';
+
+;(function() {
+	'use strict';
+
+angular.module('monsterApp',['ngRoute','restangular']);
+
+angular.module('monsterApp').config(['RestangularProvider', RestangularConfig ]);
+
+RestangularConfig.$inject = [ 'RestangularProvider' ];
+
+function RestangularConfig(RestangularProvider) {
+	RestangularProvider.setBaseUrl('/api');		
+}
 
 
-angular.module('monsterApp',['ngRoute','restangular'])
-	.config(function($routeProvider) {
 
+angular.module('monsterApp').config(['$routeProvider', RouteConfig ]);
+// angular.module('monsterApp').config(RouteConfig);
+
+RouteConfig.$inject = [ '$routeProvider' ];
+
+function RouteConfig($routeProvider) {
 
 		$routeProvider.when('/',{
 			templateUrl: 'monster/monsters.html',
@@ -24,30 +40,11 @@ angular.module('monsterApp',['ngRoute','restangular'])
 		.when('/cart', {
 			templateUrl: 'cart/cart.html',
 			controller: 'CartViewCtrl as cart'
-		});;
+		}).otherwise('/');
 
 
-	});
+}
 
 
-angular.module('monsterApp').config(function(RestangularProvider) {
-	RestangularProvider.setBaseUrl('/api');		
-});
+})();
 
-
-angular.module('monsterApp').filter('monsterSummary', function() {
-
-	return function(detail) {
-
-		if(!detail) { 
-			return ''; 
-		}
-
-		if(detail.length <= 150) {
-			return detail;
-		}
-
-		return detail.substring(0,150);
-	}
-
-});

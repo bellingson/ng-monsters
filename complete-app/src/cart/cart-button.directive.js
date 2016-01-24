@@ -1,7 +1,9 @@
 ;(function() {
 	'use strict';
 
-angular.module('monsterApp').directive('cartButton',CartButton);
+angular.module('monsterApp').directive('cartButton',['cartService', CartButton]);
+
+CartButton.$inject = [ 'cartService' ];
 
 function CartButton(cartService) {
 
@@ -21,13 +23,7 @@ function CartButton(cartService) {
 		template: '<a ng-href="/#/cart" class="btn btn-warning">Checkout ({{cartCount}})</a>'
 	};
 
-
-
-
 }
-
-
-
 
 
 })();

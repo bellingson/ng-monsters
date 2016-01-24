@@ -2,6 +2,8 @@
 	
 angular.module('monsterApp').directive('moMessages', Messages);
 
+Messages.$inject = [ 'messageService', '$location' ];
+
 function Messages(messageService, $location) {
 
 	return {
@@ -13,7 +15,7 @@ function Messages(messageService, $location) {
 			function updateMessages() {
 				scope.message = messageService.message();				
 				scope.errorMessage = messageService.errorMessage();				
-				
+
 			}
 
 			messageService.subscribe(updateMessages);

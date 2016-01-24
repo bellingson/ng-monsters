@@ -1,6 +1,11 @@
-'use strict';
+;(function() {
+	'use strict';
 
-angular.module('monsterApp').factory('cartService',function(userService, $q) {
+angular.module('monsterApp').factory('cartService', CartService );
+
+CartService.$inject = [ 'userService', '$q' ];
+
+function CartService(userService, $q) {
 	
 	var cart = [ ];
 
@@ -72,4 +77,10 @@ angular.module('monsterApp').factory('cartService',function(userService, $q) {
 		subscribe: subscribe
 	};
 
-});
+}
+
+
+
+})();
+
+

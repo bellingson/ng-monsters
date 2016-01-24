@@ -3,6 +3,8 @@
 
 angular.module('monsterApp').factory('messageService', MessageService);
 
+MessageService.$inject = [ '$location' ];
+
 function MessageService($location) {
 
 	var msgStore = {};

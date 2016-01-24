@@ -2,7 +2,9 @@
 ;(function() {
 'use strict';
 
-angular.module('monsterApp').controller('MonsterListCtrl', MonsterListCtrl);
+angular.module('monsterApp').controller('MonsterListCtrl',  MonsterListCtrl );
+
+MonsterListCtrl.$inject = [ '$location', 'monsterService', 'cartService', 'userService', 'messageService' ];
 
 function MonsterListCtrl($location, monsterService, cartService, userService, messageService) {
 
@@ -10,6 +12,8 @@ function MonsterListCtrl($location, monsterService, cartService, userService, me
 
 	vm.addToCart = addToCart;
 	vm.canEdit = canEdit;
+
+	activate();
 
 	function activate() {
 		fetchMonsters();
@@ -47,7 +51,7 @@ function MonsterListCtrl($location, monsterService, cartService, userService, me
 	}
 	
 	
-	activate();
+	
 
 }
 
