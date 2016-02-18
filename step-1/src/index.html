@@ -31,7 +31,7 @@
       </div>
 </nav>
 
-<div class="main-app">
+<div class="main-app" ng-app="monsterApp">
   <div class="container" >
 
     <div class="row cart-sell">  
@@ -41,52 +41,26 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row" ng-controller="MonsterListCtrl as list">
 
       <!-- // MONSTER 1 -->
-      <div class="col-sm-4">
+      <div class="col-sm-4" ng-repeat="monster in list.monsters">
 
         <div class="box monster">
             <a href="/sell.html" class="edit octicon octicon-pencil"></a>
 
-            <h3>Godzilla</h3>
+            <h3>{{monster.name}}</h3>
 
             
-            <img src="images/zilla.jpg" alt="Godzilla"/>
+            <img ng-src="{{monster.img}}" alt="{{monster.name}}"/>
 
             <p class="summary">
-              Godzilla is a giant monster originating from a series of tokusatsu films of the same name from Japan. 
+              {{monster.description}}
             </p>
 
           <div class="row">
             <div class="col-sm-5 price">
-                $3,000,000
-            </div>
-            <div class="col-sm-7">
-              <a href="monster-detail.html" class="btn btn-details">Details</a>
-              <button class="btn btn-cart">Add to Cart</button>
-            </div>
-          </div>
-        
-            </div> <!-- // monster -->
-      </div> <!-- monster-col -->
-
-
-      <!-- // MONSTER 2 -->
-      <div class="col-sm-4">
-
-        <div class="box monster">
-            <h3>King Kong</h3>
-            
-            <img src="images/kong.jpg" alt="King Kong"/>
-
-            <p class="summary">
-              King Kong is a giant movie monster, resembling a colossal gorilla, that has appeared in various media since 1933. 
-            </p>
-
-          <div class="row">
-            <div class="col-sm-5 price">
-                $2,500,000
+                {{monster.price}}
             </div>
             <div class="col-sm-7">
               <a href="monster-detail.html" class="btn btn-details">Details</a>
@@ -98,7 +72,7 @@
       </div> <!-- monster-col -->
 
         
-    </div> <!-- // row -->
+    </div> <!-- row -->
 
     
 
@@ -115,6 +89,9 @@
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.js"></script>
+<script src="app.js"></script>
+<script src="monster/monster-list.controller.js"></script>
 
 </body>
 </html>
